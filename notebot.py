@@ -102,7 +102,7 @@ class bot(NoteStorage):
     def __init__(self, account):
         NoteStorage.__init__(self)
         self.account = account
-        self.ping_interval = 60
+        self.ping_interval = 300
         self.last_ping_time = time.time()
         self.prev_ping_res = {'status': False}
 
