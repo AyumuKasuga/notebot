@@ -163,7 +163,8 @@ class bot(NoteStorage):
         if msg.getType() == 'chat':
             jid = msg.getFrom()
             text = msg.getBody()
-            self.msg_dispatcher(jid, text)
+            if text is not None:
+                self.msg_dispatcher(jid, text)
 
     def msg_dispatcher(self, jid, text):
         text = text.strip()
