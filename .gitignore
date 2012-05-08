@@ -1,0 +1,5 @@
+notes.sqlite3
+notes.sqlite3-journal
+run.py
+*.pyc
+
