@@ -115,6 +115,10 @@ class bot(NoteStorage):
         self.conn.sendInitPresence(requestRoster=1)
         self.reghandlers()
         self.prev_ping_res = {'status': True}
+        msg_pr = xmpp.protocol.Presence()
+        msg_pr.setStatus('type !help for help')
+        msg_pr.setPriority(1)
+        self.conn.send(msg_pr)
         self.bot_loop()
 
     def disconnect(self):
@@ -151,7 +155,7 @@ class bot(NoteStorage):
             self.conn.Roster.Unsubscribe(jid)
         elif msg.getType() == 'subscribed':
             msg_pr = xmpp.protocol.Presence()
-            msg_pr.setStatus('Avalible')
+            msg_pr.setStatus('type !help for help')
             msg_pr.setPriority(1)
             self.conn.send(msg_pr)
 
