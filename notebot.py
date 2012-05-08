@@ -111,13 +111,13 @@ class bot(NoteStorage):
         user, server, password = jid.getNode(), jid.getDomain(), self.account['pwd']
         self.conn = xmpp.Client(server, debug=['always'])
         conres = self.conn.connect()
-        authres = self.conn.auth(user, password)
+        authres = self.conn.auth(user, password, resource='notebot.py')
         self.conn.sendInitPresence(requestRoster=1)
         self.reghandlers()
         self.prev_ping_res = {'status': True}
         msg_pr = xmpp.protocol.Presence()
         msg_pr.setStatus('type !help for help')
-        msg_pr.setPriority(1)
+        msg_pr.setPriority(10)
         self.conn.send(msg_pr)
         self.bot_loop()
 
@@ -156,7 +156,7 @@ class bot(NoteStorage):
         elif msg.getType() == 'subscribed':
             msg_pr = xmpp.protocol.Presence()
             msg_pr.setStatus('type !help for help')
-            msg_pr.setPriority(1)
+            msg_pr.setPriority(10)
             self.conn.send(msg_pr)
 
     def inmsg(self, conn, msg):
